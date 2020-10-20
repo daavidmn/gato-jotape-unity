@@ -13,7 +13,7 @@ public class Obstacle : MonoBehaviour
   }
 
   // Update is called once per frame
-  void Update()
+  private void FixedUpdate()
   {
     objRB.velocity = new Vector2(-config.speed / 2, 0f);
   }

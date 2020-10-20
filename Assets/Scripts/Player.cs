@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
   public UnityEvent onPlayerHitted;
   private Rigidbody2D plyRB;
   private Animator animator;
-  private bool canJump;
+  private bool canJump, willJump;
 
   public float jumpFactor, forwardFactor;
   private float forwardForce = 0f;
@@ -26,9 +26,14 @@ public class Player : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
     {
-      Jump();
+      willJump = true;
       Debug.Log("Touch Pressed");
     }
+  }
+
+  private void FixedUpdate()
+  {
+    if (willJump) Jump();
   }
 
   void Jump()
@@ -63,5 +68,6 @@ public class Player : MonoBehaviour
       animator.Play("player_running");
     }
     canJump = true;
+    willJump = false;
   }
 }
